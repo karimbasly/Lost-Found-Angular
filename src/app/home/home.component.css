@@ -11,3 +11,8 @@
 .mat-grid-tile {
   font-size: xx-large;
 }
+.profile-img-toolbar{
+  border-radius: 100%;
+  margin-right: 8px;
+  object-fit: cover;
+}

@@ -5,28 +5,25 @@ import {map} from 'rxjs/operators';
 import {JwtHelperService} from '@auth0/angular-jwt';
 
 import {environment} from '@env';
-import {User} from '@core/user.model';
+import {UserLogin} from '@core/userlogin.model';
 import {HttpService} from '@core/http.service';
 import {Role} from '@core/role.model';
-import {EndPoints} from "@shared/end-points";
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   static END_POINT = environment.REST_CORE+ '/users/token';
-  static END_POINT2 = environment.REST_CORE+ '/users/ok';
-  private user: User;
+  private user: UserLogin;
 
   constructor(private httpService: HttpService, private router: Router) {
   }
 
 
 
-  login(mobile: number, password: string): Observable<User> {
+  login(email: string, password: string): Observable<UserLogin> {
     return this.httpService.
-
-    authBasic(mobile, password)
+    authBasic(email, password)
       .post(AuthService.END_POINT)
       .pipe(
         map(jsonToken => {
@@ -62,7 +59,7 @@ export class AuthService {
   }
 
   untilOperator(): boolean {
-    return this.hasRoles([Role.ADMIN, Role.MANAGER, Role.OPERATOR]);
+    return this.hasRoles([Role.ADMIN, Role.MANAGER, Role.OPERATOR,Role.CUSTOMER]);
   }
 
   isCustomer(): boolean {
@@ -71,7 +68,7 @@ export class AuthService {
 
 
   getName(): string {
-    return this.user ? this.user.userName : '???';
+    return this.user ? this.user.userName : undefined;
   }
 
   getToken(): string {
@@ -79,7 +76,7 @@ export class AuthService {
   }
 
   getEmail() :string{
-    return this.user ? this.user.email: '???';
+    return this.user ? this.user.email: undefined;
 
 
 

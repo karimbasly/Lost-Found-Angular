@@ -5,18 +5,38 @@
     <span>Lost&Found</span>
   </button>
   <div>
+    <img class="profile-img-toolbar" *ngIf="isAuthenticated()" width="30" height="30" [src]="photo">
     <button (click)="login()" *ngIf="!isAuthenticated()" mat-button>
       <mat-icon>person_outline</mat-icon>
       <span>Login</span>
     </button>
-    <span *ngIf="isAuthenticated()"> {{username}} </span>
-    <span *ngIf="isAuthenticated()"> {{email}} </span>
+
     <button (click)="logout()" *ngIf="isAuthenticated()" mat-button>
       <span></span>
       <mat-icon>person_outline</mat-icon>
       <span>Logout</span>
     </button>
+    <button [matMenuTriggerFor]="menu" mat-icon-button  *ngIf="isAuthenticated()"  >
+      <mat-icon>menu</mat-icon>
+    </button>
+
+
   </div>
 </mat-toolbar>
+<mat-menu #menu="matMenu" xPosition="before">
+  <button mat-menu-item  (click)="Profile()" >
+    <mat-icon>settings</mat-icon>
+    <span>Profile</span>
+  </button>
+  <button   mat-menu-item routerLink="/home/user">
+    <mat-icon> contacts</mat-icon>
+    <span>User</span>
+  </button>
+  <button   mat-menu-item routerLink="/home/Announcement">
+    <mat-icon>store</mat-icon>
+    <span>Announcement</span>
+  </button>
+
+</mat-menu>
 <router-outlet></router-outlet>
 <app-footer></app-footer>

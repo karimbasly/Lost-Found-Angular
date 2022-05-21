@@ -1,23 +1,20 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-
 import {LoginDialogComponent} from '@shared/dialogs/login-dialog.component';
 import {AuthService} from '@core/auth.service';
-
-import {Subscription} from "rxjs";
-import {throwPortalOutletAlreadyDisposedError} from "@angular/cdk/portal/portal-errors";
+import {registerDialogComponent} from "@shared/dialogs/register-dialog.component";
+import {UserService} from "@shared/services/user.Service";
 
 @Component({
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.css'],
 })
 export class HomeComponent {
-  username = undefined;
-  email= undefined;
+  username :string;
+  photo :string;
 
-  constructor(private dialog: MatDialog, private authService: AuthService) {
-    this.username = authService.getName();
-    this.email=authService.getEmail();
+  constructor(private dialog: MatDialog, private authService: AuthService,private userService:UserService) {
+
 
   }
 
@@ -26,11 +23,13 @@ export class HomeComponent {
     this.dialog.open(LoginDialogComponent)
       .afterClosed()
       .subscribe(() => {
-        this.username = this.authService.getName();
-        this.email=this.authService.getEmail();
-        console.log(this.authService.getEmail());
+        this.username = this.authService.getEmail();
+        if (this.isAuthenticated()) {
+          this.userService.read(this.username).subscribe(value => this.photo = value.photo)
+        }
       });
   }
+
 
   isAuthenticated(): boolean {
     return this.authService.isAuthenticated();
@@ -41,6 +40,13 @@ export class HomeComponent {
   }
 
 
+  Profile() {
+    this.dialog.closeAll();
+    this.userService.read(this.username).subscribe(value => //console.log(value.id)//
+       this.dialog.open(registerDialogComponent,{data:value})
+    )
+
+  }
 }
 
 

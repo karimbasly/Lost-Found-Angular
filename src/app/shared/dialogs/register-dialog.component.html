@@ -1,16 +1,17 @@
 <h2 mat-dialog-title>{{title}}</h2>
 <mat-dialog-content>
 
-    <div >
+    <div class= "profile-img" >
       <img [src]="url" height="200">
       <input style="display: none" type="file"
              (change)="onFileSelected($event)"
              #fileInput/> </div>
+  <div >
   <mat-dialog-actions>
-      <button  (click)="fileInput.click()" mat-button> pick </button>
-      <button (click)="Upload()"  mat-button>Upload</button>
-  </mat-dialog-actions>
+      <button class="center" (click)="fileInput.click()" mat-button> pick </button>
 
+  </mat-dialog-actions>
+  </div>
   <mat-form-field >
     <mat-label>user Name</mat-label>
     <input [(ngModel)]="user.userName"  matInput    required type="text"/>
@@ -21,22 +22,32 @@
   </mat-form-field>
   <mat-form-field >
     <mat-label>email</mat-label>
-    <input [(ngModel)]="user.email" matInput required   type="email">
+    <input [(ngModel)]="user.email" matInput required  [disabled]="!isCreate()" type="email">
   </mat-form-field>
   <mat-form-field >
-    <mat-label>password</mat-label>
+    <mat-label>Mobile</mat-label>
+    <input [(ngModel)]="user.mobile" matInput required  type="text">
+  </mat-form-field>
+  <mat-form-field >
+    <mat-label>Location</mat-label>
+    <input [(ngModel)]="user.location" matInput required  type="text">
+  </mat-form-field>
+  <mat-form-field  *ngIf="isCreate()">
+    <mat-label>password  </mat-label>
     <input [(ngModel)]="user.password" matInput required  type="password">
   </mat-form-field>
-  <mat-form-field >
+  <mat-form-field  *ngIf="isCreate()">
     <mat-label>password</mat-label>
     <input [(ngModel)]="password2" matInput required  type="password">
 
-  </mat-form-field>
-  <span class="mat-error"*ngIf="error"> Password don't match </span>
-
+  </mat-form-field >
+  <span class="mat-error" *ngIf="error"> Password don't match </span>
 </mat-dialog-content>
 
 <mat-dialog-actions>
   <button mat-button  mat-dialog-close>Cancel</button>
-  <button (click)="create()"   [disabled]=invalid() mat-button>Submit</button>
+  <button (click)="create()" *ngIf="isCreate()" [disabled]=invalid() color="primary" mat-raised-button>Create
+  </button>
+  <button (click)="update()" *ngIf="!isCreate()" [disabled]=invalid() color="primary" mat-raised-button>Update
+  </button>
 </mat-dialog-actions>

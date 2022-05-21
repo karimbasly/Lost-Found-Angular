@@ -1,50 +1,54 @@
 import {Component, Inject} from "@angular/core";
-import {LoginDialogComponent} from "@shared/dialogs/login-dialog.component";
-import {userregister} from "@shared/models/user-register.model";
+import {User} from "@shared/models/user.model";
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {UserService} from "@shared/services/user.Service";
-import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   templateUrl: 'register-dialog.component.html',
   styleUrls: ['./dialog.component.css']
 })
 export class registerDialogComponent{
-  user:userregister
+  user:User
   title: string;
   password2:string
   error:boolean=false;
-  url="/assets/images/empty.jpg";
+  oldEmail:string
+  url:string;
   selectedFile:File=null;
 
 
 
-  constructor(@Inject(MAT_DIALOG_DATA) data: userregister, private userService:UserService,private dialog:MatDialog,private snackBar: MatSnackBar) {
-    this.title =  'Register';
-    this.user = data ? data : {
-      email: undefined,familyName:undefined,photo:undefined,
+  constructor(@Inject(MAT_DIALOG_DATA) data: User, private userService:UserService, private dialog:MatDialog) {
+    this.title = data? 'Update Profile': 'Register';
+    this.url= data? data.photo:'/assets/images/empty.jpg';
+    this.user = data ? data : {email: undefined,familyName:undefined,photo:undefined,location:undefined,mobile:undefined,
       userName:undefined,password:undefined,role:undefined,id:undefined,registrationDate:undefined
 
     };
     this.password2="";
+    this.oldEmail=data ? data.email:undefined;
+  }
+
+  isCreate(): boolean {
+    return this.oldEmail === undefined;
   }
 
   create(): void {
-    if(this.checkpass(this.user.password,this.password2)){
-    this.user.photo=this.url;
-    console.log(this.user);
-    this.dialog.closeAll();
+    if (this.checkpass(this.user.password, this.password2)) {
+      this.user.photo = this.url;
+      this.userService.create(this.user)
+        .subscribe(value => {
+          this.dialog.closeAll();
+    });
+    } else {
+      this.error = true;
     }
-    else {
-      this.error=true;
-    }
-  /*this.userService.create(this.user)
-    .subscribe(() => {
-      this.dialog.closeAll();
+  }
 
-    console.log(this.user);
-    });*/
-
+  update(): void {
+    this.userService
+      .update(this.oldEmail, this.user)
+      .subscribe(() => this.dialog.closeAll());
 
 
   }
@@ -64,13 +68,14 @@ export class registerDialogComponent{
 
   }
 
-  Upload() {
-
-  }
 
   invalid(): boolean {
-    return this.check(this.user.userName) || this.check(this.user.familyName) || this.check(this.user.password)|| this.check(this.password2)
-      || this.check(this.user.email);
+    if(this.isCreate()) {
+      return this.check(this.user.userName) || this.check(this.user.familyName) || this.check(this.user.password) || this.check(this.password2)
+        || this.check(this.user.email);
+    }
+    else
+      return this.check(this.user.userName) || this.check(this.user.familyName) || this.check(this.user.email);
   }
   check(attr: string): boolean {
     return attr === undefined || null || attr === '';
