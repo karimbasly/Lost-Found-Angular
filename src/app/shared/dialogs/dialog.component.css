@@ -2,3 +2,19 @@
   display: flex;
   flex-direction: column;
 }
+.profile-img>img{
+  border-radius: 80%;
+  object-fit: cover;
+  object-position: center;
+  justify-content: center;
+
+}
+
+.profile-img{
+  position: relative;
+}
+.center{
+  position: center;
+  margin-bottom: 5%;
+  margin-top: 5%;
+}

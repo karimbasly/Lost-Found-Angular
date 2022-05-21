@@ -11,14 +11,14 @@ import {registerDialogComponent} from "@shared/dialogs/register-dialog.component
   styleUrls: ['./dialog.component.css']
 })
 export class  LoginDialogComponent {
-  mobile: number;
+  email: string;
   password: string;
 
   constructor(private auth: AuthService, private router: Router, private dialog: MatDialog) {
   }
 
   login(): void {
-    this.auth.login(this.mobile, this.password).subscribe(
+    this.auth.login(this.email, this.password).subscribe(
       () => {
         if (this.auth.untilOperator()) {
           //this.router.navigate(['shop']).then().finally(() => this.dialog.closeAll());
@@ -33,7 +33,6 @@ export class  LoginDialogComponent {
   }
 
   Regiter() :void {
-    this.dialog.closeAll();
     this.dialog.open(registerDialogComponent)
 
 
