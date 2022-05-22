@@ -1,11 +1,12 @@
 <mat-toolbar color="primary">
 
-  <img alt="miw" src="../../assets/images/miw.png"/>
+  <img alt="miw" src="../../assets/images/icon.png" height="50" width="70"/>
+
   <button mat-button routerLink="/home">
     <span>Lost&Found</span>
   </button>
   <div>
-    <img class="profile-img-toolbar" *ngIf="isAuthenticated()" width="30" height="30" [src]="photo">
+    <img alt="photo" class="profile-img-toolbar" *ngIf="isAuthenticated()" width="30" height="30" [src]="photo">
     <button (click)="login()" *ngIf="!isAuthenticated()" mat-button>
       <mat-icon>person_outline</mat-icon>
       <span>Login</span>

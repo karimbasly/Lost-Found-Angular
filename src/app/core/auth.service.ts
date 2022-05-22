@@ -54,12 +54,9 @@ export class AuthService {
     return this.hasRoles([Role.ADMIN]);
   }
 
-  untilManager(): boolean {
-    return this.hasRoles([Role.ADMIN, Role.MANAGER]);
-  }
 
   untilOperator(): boolean {
-    return this.hasRoles([Role.ADMIN, Role.MANAGER, Role.OPERATOR,Role.CUSTOMER]);
+    return this.hasRoles([Role.ADMIN,Role.CUSTOMER]);
   }
 
   isCustomer(): boolean {

@@ -9,6 +9,6 @@ export interface User {
   photo?:string;
   role?: Role;
   registrationDate?: Date;
-   mobile:number;
-   location:string
+  mobile:number;
+  location:string
 }

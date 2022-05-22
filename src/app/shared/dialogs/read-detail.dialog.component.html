@@ -1,7 +1,23 @@
 <h1 mat-dialog-content>{{title}}</h1>
 <mat-dialog-content>
-  <ng-container *ngIf="(object | async) as data">
-    <mat-label *ngFor="let def of labels(data)"><strong>{{def | uppercaseWords}}: </strong>{{data[def]}}</mat-label>
+  <ng-container>
+    <div class="center">
+    <div class= "profile-img"  >
+      <img alt="photo" [src]="user.photo" height="120" width="120">
+    </div>
+    </div>
+     <p> <strong>user name: </strong>
+      {{user.userName}} </p>
+    <p> <strong>Family name: </strong>
+      {{user.familyName}} </p>
+    <p> <strong>Email: </strong>
+      {{user.email}} </p>
+    <p> <strong>Location: </strong>
+      {{user.location}} </p>
+    <p> <strong>Mobile: </strong>
+      {{user.mobile}} </p>
+    <p> <strong>Registration Date: </strong>
+      {{user.registrationDate}} </p>
   </ng-container>
 </mat-dialog-content>
 <mat-dialog-actions>
