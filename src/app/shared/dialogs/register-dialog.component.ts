@@ -19,7 +19,7 @@ export class registerDialogComponent{
 
 
   constructor(@Inject(MAT_DIALOG_DATA) data: User, private userService:UserService, private dialog:MatDialog) {
-    this.title = data? 'Update Profile': 'Register';
+    this.title = data? 'Update ': 'Create';
     this.url= data? data.photo:'/assets/images/empty.jpg';
     this.user = data ? data : {email: undefined,familyName:undefined,photo:undefined,location:undefined,mobile:undefined,
       userName:undefined,password:undefined,role:undefined,id:undefined,registrationDate:undefined
@@ -46,16 +46,14 @@ export class registerDialogComponent{
   }
 
   update(): void {
+    this.user.photo = this.url;
     this.userService
       .update(this.oldEmail, this.user)
       .subscribe(() => this.dialog.closeAll());
-
-
   }
   //
   onFileSelected(event) {
     console.log(event);
-    //this.selectedFile=event.target.files[0]
     if(event.target.files){
       this.selectedFile=event.target.files[0]
       var reader = new FileReader();

@@ -2,7 +2,7 @@
 <mat-dialog-content>
 
     <div class= "profile-img" >
-      <img [src]="url" height="200">
+      <img alt="photo" [src]="url" height="120" width="120">
       <input style="display: none" type="file"
              (change)="onFileSelected($event)"
              #fileInput/> </div>
@@ -35,6 +35,10 @@
   <mat-form-field  *ngIf="isCreate()">
     <mat-label>password  </mat-label>
     <input [(ngModel)]="user.password" matInput required  type="password">
+  </mat-form-field>
+  <mat-form-field  *ngIf="user.role=='ADMIN'">
+    <mat-label>Role </mat-label>
+    <input [(ngModel)]="user.role" matInput required  type="text">
   </mat-form-field>
   <mat-form-field  *ngIf="isCreate()">
     <mat-label>password</mat-label>
