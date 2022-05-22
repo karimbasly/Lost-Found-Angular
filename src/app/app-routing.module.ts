@@ -1,15 +1,10 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {HomeComponent} from "./home/home.component";
-
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
-  {path: 'home', loadChildren: () => import('./home/home.module').then(module => module.HomeModule)}
+  {path: 'home', loadChildren: () => import('./home/home.module').then(module => module.HomeModule)} // lazy load
 
   ];
-
-  // lazy load
-  //{path: 'shop', loadChildren: () => import('./shop/shop.module').then(module => module.ShopModule)} // lazy load
 
 
 @NgModule({
