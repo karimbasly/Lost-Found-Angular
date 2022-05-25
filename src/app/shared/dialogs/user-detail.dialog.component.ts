@@ -3,7 +3,7 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {User} from "@shared/models/user.model";
 
 @Component({
-  templateUrl: 'read-detail.dialog.component.html',
+  templateUrl: 'user-detail.dialog.component.html',
   styleUrls: ['./dialog.component.css']
 })
 

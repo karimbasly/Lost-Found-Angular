@@ -1,10 +1,13 @@
 
 .form-container {
   margin: 30px;
-  max-wimdth: 100px;
+  max-wimdth: 300px;
+  object-position: center ;
+  position: center;
 }
 .example-card {
-  max-width: 400px;
+  padding-left: 20%;
+  padding-right: 30%;
 }
 
 .example-header-image {
@@ -17,6 +20,19 @@
 .right {
   position: absolute;
   right: 20px;
+}
+#map {
+  width: 500px;
+  height: 500px;
+}
+#asGeoCoder{
+  width: 500px;
+  height: 500px;
+}
 
-
+.content{
+  padding: 30px;
+}
+.content>mat-card{
+  width: 250px;
 }
