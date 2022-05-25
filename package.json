@@ -1,6 +1,8 @@
 {
   "name": "angulartest",
   "version": "0.0.0",
+  "mapkey": "pk.eyJ1Ijoia2FyaW1ic2wiLCJhIjoiY2wzaXNqMTBuMDBuYjNkdm14dnRlZWFndSJ9.h2mhgWCGqVyHc4k9mp_T3Q",
+
   "scripts": {
     "heroku-postbuild": "ng build --prod",
     "build-prod": "ng build --prod",
