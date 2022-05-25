@@ -9,7 +9,7 @@ export const environment = {
  NAME: pkg.name,
   VERSION: pkg.version,
   REST_CORE: 'http://localhost:8082',
-  MAPPK:'pk.eyJ1Ijoia2FyaW1ic2wiLCJhIjoiY2wzaXNqMTBuMDBuYjNkdm14dnRlZWFndSJ9.h2mhgWCGqVyHc4k9mp_T3Q'
+  MAPPK:pkg.mapkey
 };
 
 /*

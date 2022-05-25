@@ -6,4 +6,5 @@ export const environment = {
   NAME: pkg.name,
   VERSION: pkg.version,
   REST_CORE: 'https://lost-found-spring.herokuapp.com',
+  MAPPK:pkg.mapkey
 };
