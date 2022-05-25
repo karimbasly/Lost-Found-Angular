@@ -1,0 +1,59 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+  <div>
+    <img alt="photo" [src]="url" height="200" width="200">
+    <input style="display: none" type="file"
+           (change)="onFileSelected($event)"
+           #fileInput/> </div>
+  <div >
+    <mat-dialog-actions>
+      <button class="center" (click)="fileInput.click()" mat-button> pick </button>
+
+    </mat-dialog-actions>
+  </div>
+
+  <mat-form-field class="full-width" >
+    <mat-label>name</mat-label>
+    <input [(ngModel)]="announcement.name" id="company" matInput required type="text"/>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Description</mat-label>
+    <textarea [(ngModel)]="announcement.description"  matInput></textarea>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label> type</mat-label>
+  <mat-select  [(ngModel)]="announcement.type">
+    <mat-option *ngFor="let key of keyType" [value]="key"  >
+      {{key}}
+    </mat-option>
+  </mat-select>
+  </mat-form-field>
+    <mat-form-field>
+      <mat-label> category</mat-label>
+      <mat-select [(ngModel)]="announcement.category">
+        <mat-option *ngFor="let i of keyCategory" [value]="i" >
+          {{i}}
+        </mat-option>
+      </mat-select>
+  </mat-form-field>
+  <table><tr>
+    <td>
+      <mat-form-field  >
+      <mat-label>Location</mat-label>
+      <input [(ngModel)]="announcement.location" matInput required type="text"/>
+
+      </mat-form-field>
+    </td>
+    <td> <button mat-button mat-icon-button matSuffix (click)="openMap() ">
+      <mat-icon matSuffix>place</mat-icon>
+    </button> </td>
+  </tr></table>
+
+  <ng-container>
+  </ng-container>
+  <mat-dialog-actions>
+    <button (click)="update()"  mat-raised-button>Update</button>
+   <!-- <button (click)="closeAudit()" mat-raised-button>Close Audit </button>-->
+    <button cdkFocusInitial mat-dialog-close mat-raised-button>Cancel</button>
+  </mat-dialog-actions>
+</mat-dialog-content>

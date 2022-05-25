@@ -5,13 +5,20 @@ import {HomeComponent} from './home.component';
 import {HomeRoutingModule} from './home-routing.module';
 import {UserComponent} from "./users/user.component";
 import {AnnouncementComponent} from "./announcement/announcement.component";
+import {AnnouncementDialogComponent} from "./announcement/Announcement-dialog.component";
+import {AnnouncementMapDialogComponent} from "./announcement/Announcement-map-dialog.component";
+import {AnnouncementDetailDialogComponent} from "./announcement/announcement-detail.dialog.component";
+
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     UserComponent,
-    AnnouncementComponent
+    AnnouncementComponent,
+    AnnouncementDialogComponent,
+    AnnouncementMapDialogComponent,
+    AnnouncementDetailDialogComponent
   ],
   entryComponents: [
 

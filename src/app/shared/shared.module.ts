@@ -8,7 +8,7 @@ import {MaterialModule} from '@shared/material.module';
 import {CancelYesDialogComponent} from '@shared/dialogs/cancel-yes-dialog.component';
 import {LoginDialogComponent} from '@shared/dialogs/login-dialog.component';
 import {NumberDialogComponent} from '@shared/dialogs/number-dialog.component';
-import {ReadDetailDialogComponent} from '@shared/dialogs/read-detail.dialog.component';
+import {ReadDetailDialogComponent} from '@shared/dialogs/user-detail.dialog.component';
 
 import {UppercaseWords} from '@shared/pipes/UppercaseWordsPipe';
 
