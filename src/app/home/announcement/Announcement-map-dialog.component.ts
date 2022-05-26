@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, Renderer2, ViewChild,} from "@angular/core";
-import {MapService} from "./map.Service";
+import {AnnouncementService} from "./Announcement.Service";
 import * as mapboxgl from 'mapbox-gl' ;
 
 import {environment} from "@env";
@@ -21,7 +21,7 @@ export class AnnouncementMapDialogComponent implements OnInit {
   place_name:string
   center:string[];
 
-constructor(private renderer2:Renderer2,private mapService:MapService,private dialog: MatDialogRef<AnnouncementMapDialogComponent>) {
+constructor(private renderer2:Renderer2, private mapService:AnnouncementService, private dialog: MatDialogRef<AnnouncementMapDialogComponent>) {
   this.mapbox.accessToken=environment.MAPPK
 }
 

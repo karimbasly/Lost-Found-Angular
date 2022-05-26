@@ -12,8 +12,8 @@ import {AuthService} from "@core/auth.service";
 @Injectable({
   providedIn: 'root',
 })
-export class MapService{
-
+export class AnnouncementService {
+  static SEARCH = '/search';
   mapbox = (mapboxgl as typeof mapboxgl);
   map: mapboxgl.Map;
   style = 'mapbox://styles/mapbox/streets-v11';
@@ -30,9 +30,9 @@ export class MapService{
   }
 
   create(announcement:Announcement): Observable<Announcement> {
-    this.userService.read(this.username).subscribe(value => announcement.user = value)
-    return this.httpService
-      .successful("Announcement) successful Create")
+   announcement.userEmail=this.authService.getEmail();
+   return this.httpService
+      .successful("Announcement successful Create")
       .post(EndPoints.ANNOUNCEMENT,announcement);
   }
 
@@ -86,5 +86,9 @@ getcenter(){
   getPlaceName(){
     return this.place_name;
   }
+
+  readAll() {
+    return this.httpService.get(EndPoints.ANNOUNCEMENT)
   }
+}
 
