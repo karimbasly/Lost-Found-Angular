@@ -1,6 +1,5 @@
 import {Type} from "@shared/models/type.model";
 import {Category} from "@shared/models/category.model";
-import {User} from "@shared/models/user.model";
 
 export interface Announcement{
   id:string;
@@ -8,11 +7,13 @@ export interface Announcement{
   description:string;
   type:Type;
   category:Category;
-  photo?:string;
-  location?:string;
+  photo:string;
+  location:string;
   lat?:number;
   lng?:number;
-  user:User;
+  userEmail:string;
+  userPhoto?:string;
+  userName:string;
 
 
 }

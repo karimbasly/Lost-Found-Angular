@@ -17,7 +17,7 @@
       <mat-icon>person_outline</mat-icon>
       <span>Logout</span>
     </button>
-    <button [matMenuTriggerFor]="menu" mat-icon-button>  <!--*ngIf="isAuthenticated()"-->
+    <button [matMenuTriggerFor]="menu" mat-icon-button *ngIf="isAuthenticated()" >
       <mat-icon>menu</mat-icon>
     </button>
 
