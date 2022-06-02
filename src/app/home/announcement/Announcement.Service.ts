@@ -8,6 +8,7 @@ import {EndPoints} from "@shared/end-points";
 import {Announcement} from "./announcement-model";
 import {UserService} from "@shared/services/user.Service";
 import {AuthService} from "@core/auth.service";
+import {AnnouncementSearch} from "./announcement-search.model";
 
 @Injectable({
   providedIn: 'root',
@@ -64,15 +65,9 @@ export class AnnouncementService {
           console.log(this.center[0])
           //this.cbAddress.emit(result);
         })
-
-
-
         resolve({
           map: this.map,
           geocoder
-
-
-
         });
 
       } catch (e) {
@@ -80,6 +75,12 @@ export class AnnouncementService {
       }
     });
 }
+ /* update(oldId: string, announcement:Announcement) : Observable<Announcement> {
+    return this.httpService
+      .successful("Announcement successful Update")
+      .put(EndPoints.ANNOUNCEMENT+'/'+oldId,announcement);
+
+  }*/
 getcenter(){
     return this.center;
 }
@@ -88,7 +89,26 @@ getcenter(){
   }
 
   readAll() {
-    return this.httpService.get(EndPoints.ANNOUNCEMENT)
+    return this.httpService
+
+      .get(EndPoints.ANNOUNCEMENT+AnnouncementService.SEARCH)
+  }
+
+  search(announcementSearch: AnnouncementSearch) :Observable<Announcement[]>{
+    return this.httpService.paramsFrom(announcementSearch)
+      .get(EndPoints.ANNOUNCEMENT+AnnouncementService.SEARCH)
+  }
+
+  readById(id: string):Observable<any> {
+    return this.httpService
+      .get(EndPoints.ANNOUNCEMENT+ '/' + id);
+
+  }
+
+  readByUserEmail(userEmail:string) :Observable<Announcement[]> {
+    return this.httpService
+      .get(EndPoints.ANNOUNCEMENT+'/user/'+userEmail)
+
   }
 }
 

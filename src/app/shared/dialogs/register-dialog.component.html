@@ -36,7 +36,7 @@
     <mat-label>password  </mat-label>
     <input [(ngModel)]="user.password" matInput required  type="password">
   </mat-form-field>
-  <mat-form-field  *ngIf="user.role=='ADMIN'">
+  <mat-form-field ><!-- *ngIf="user.role=='ADMIN'"> -->
     <mat-label>Role </mat-label>
     <input [(ngModel)]="user.role" matInput required  type="text">
   </mat-form-field>

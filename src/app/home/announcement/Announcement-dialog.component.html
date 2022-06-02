@@ -24,7 +24,7 @@
     <mat-label> type</mat-label>
   <mat-select  [(ngModel)]="announcement.type">
     <mat-option *ngFor="let key of keyType" [value]="key"  >
-      {{key}}
+      {{type[key]}}
     </mat-option>
   </mat-select>
   </mat-form-field>
@@ -32,11 +32,12 @@
       <mat-label> category</mat-label>
       <mat-select [(ngModel)]="announcement.category">
         <mat-option *ngFor="let i of keyCategory" [value]="i" >
-          {{i}}
+          {{category[i]}}
         </mat-option>
       </mat-select>
   </mat-form-field>
-  <table><tr>
+  <table>
+    <tr>
     <td>
       <mat-form-field  >
       <mat-label>Location</mat-label>
@@ -47,13 +48,15 @@
     <td> <button mat-button mat-icon-button matSuffix (click)="openMap() ">
       <mat-icon matSuffix>place</mat-icon>
     </button> </td>
-  </tr></table>
+  </tr>
+  </table>
+
 
   <ng-container>
   </ng-container>
   <mat-dialog-actions>
-    <button (click)="create()"  mat-raised-button>Create</button>
-   <!-- <button (click)="closeAudit()" mat-raised-button>Update </button>-->
+    <button (click)="create()"  *ngIf="isCreate()"  mat-raised-button>Create</button>
+    <button (click)="update()"   *ngIf="!isCreate()" mat-raised-button>Update </button>
     <button cdkFocusInitial mat-dialog-close mat-raised-button>Cancel</button>
   </mat-dialog-actions>
 </mat-dialog-content>

@@ -9,7 +9,6 @@ import {User} from "@shared/models/user.model";
 
 export class ReadDetailDialogComponent {
   title: string;
-  photo: string
   user:User;
 
   constructor(@Inject(MAT_DIALOG_DATA) data: User) {

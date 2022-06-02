@@ -1,26 +1,31 @@
 
-  <mat-card-content class="form-container">
-    <mat-label><strong>Filtros: </strong></mat-label>
+  <mat-card-content class="form-container" >
+    <mat-label><strong>Filters: </strong></mat-label>
     <mat-form-field>
-      <mat-label>Nº identificación</mat-label>
-      <input  matInput>
+      <mat-label>Location </mat-label>
+      <input [(ngModel)]="announcementSearch.location" matInput>
     </mat-form-field>
     <mat-form-field>
-      <mat-label>Nombre cliente</mat-label>
-      <input  matInput>
+      <mat-label> status</mat-label>
+      <mat-select  [(ngModel)]="announcementSearch.type">
+        <mat-option *ngFor="let key of keyType" [value]="key"  >
+          {{type[key]}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-form-field>
-      <mat-label>Primer apellido</mat-label>
-      <input  matInput>
+      <mat-label> category</mat-label>
+      <mat-select [(ngModel)]="announcementSearch.category">
+
+        <mat-option *ngFor="let i of keyCategory" [value]="i" >
+          {{category[i]}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
-    <mat-form-field>
-      <mat-label>Segundo apellido</mat-label>
-      <input  matInput>
-    </mat-form-field>
-    <button mat-icon-button>
+    <button mat-icon-button (click)="search()">
       <mat-icon>search</mat-icon>
     </button>
-    <button  mat-icon-button>
+    <button  mat-icon-button (click)="resetSearch()">
       <mat-icon>close</mat-icon>
     </button>
   </mat-card-content>
@@ -33,113 +38,42 @@
     <mat-icon color="warn">add</mat-icon>
   </button>
   </mat-card-title>
-<!--
-  <mat-card class="form-container">
-  <mat-card-title-group>
-    <mat-card-title>object name </mat-card-title>
-
-  </mat-card-title-group>
-  <img mat-card-md-image src="../../assets/images/empty.jpg" >
-
-  <a>  Description
-  </a>
-  <mat-card-content>
-    <img mat-card-avatar class="example-header-image"
-         [style.background-image]="'url(' + url + ')'" width="40" height="40">
-
-    <a>    <mat-icon matSuffix>place</mat-icon> object Location
-    </a>
-
-    <button  mat-button mat-icon-button matSuffix>
-      <mat-icon>visibility</mat-icon>
-    </button>
-    <button  mat-button mat-icon-button matSuffix>
-      <mat-icon color="warn">mode_edit</mat-icon>
-    </button>
-    <button  mat-button mat-icon-button matSuffix>
-      <mat-icon color="warn">close</mat-icon>
-    </button>
-  </mat-card-content>
-  </mat-card>
-</mat-card>
-
--->
-  <!--<div style="width:9px margin:0 auto"></div>
-  <mat-grid-list cols="2"  rowheight=500px> -->
-<div class="content">
-  <div fxLayout="row wrap" fxLayoutGap="15px grid" >
-    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let i of [1,2,3,4,5,6,7]" >
-  <mat-card class="mat-elevation-z4">
+<div class="content"  *ngIf="announcement?.length>0" >
+  <div fxLayout="row wrap" fxLayoutGap="15px grid"  >
+    <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%"   *ngFor="let announcements of announcement" >
+  <mat-card  class="mat-elevation-z4">
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image">
-        <img mat-card-avatar class="example-header-image"
-             [style.background-image]="'url(' + url + ')'" width="40" height="40">
+      <div mat-card-avatar  >
+        <img alt="photo"   class="example-header-image"  width="30" height="30" [src]="announcements.userPhoto">
       </div>
-      <mat-card-title>object name{{i}}</mat-card-title>
+
+      <mat-card-title>{{announcements.name}}</mat-card-title>
 
     </mat-card-header>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <img mat-card-image  width="250px" height="250px" [src]="announcements.photo" alt="Photo ">
     <mat-card-content>
       <p>
-        Description{{i}}
+        <strong>Description :   </strong> {{announcements.description}}
       </p>
     </mat-card-content>
     <mat-card-actions>
-
-
-      <a>    <mat-icon matSuffix>place</mat-icon> object Location {{i}}
+      <a>    <mat-icon matSuffix>place</mat-icon>  {{announcements.location}}
       </a>
 
-      <button  mat-button mat-icon-button matSuffix (click)="Read()" >
+      <button  mat-button mat-icon-button matSuffix (click)="read(announcements.id)" >
         <mat-icon>visibility</mat-icon>
       </button>
-      <button  mat-button mat-icon-button matSuffix>
+
+      <button *ngIf="admin" mat-button mat-icon-button matSuffix (click)="update(announcements.id)" >
         <mat-icon color="warn">mode_edit</mat-icon>
       </button>
-      <button  mat-button mat-icon-button matSuffix>
+      <button *ngIf="admin"   mat-button mat-icon-button matSuffix (click)="delete(announcements.id)">
         <mat-icon color="warn">close</mat-icon>
       </button>
+
     </mat-card-actions>
   </mat-card>
     </div>
   </div>
 </div>
 </mat-card>
-
-  <!--
-    <div class="example-card">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Shiba Inu</mat-card-title>
-        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-        <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-          bred for hunting.
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <img mat-card-avatar class="example-header-image"
-             [style.background-image]="'url(' + url + ')'" width="40" height="40">
-
-        <a>    <mat-icon matSuffix>place</mat-icon> object Location
-        </a>
-
-        <button  mat-button mat-icon-button matSuffix>
-          <mat-icon>visibility</mat-icon>
-        </button>
-        <button  mat-button mat-icon-button matSuffix>
-          <mat-icon color="warn">mode_edit</mat-icon>
-        </button>
-        <button  mat-button mat-icon-button matSuffix>
-          <mat-icon color="warn">close</mat-icon>
-        </button>
-      </mat-card-actions>
-    </div>
-
-
-  <--</mat-grid-list> -->
-
