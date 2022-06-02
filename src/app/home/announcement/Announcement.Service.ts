@@ -75,12 +75,12 @@ export class AnnouncementService {
       }
     });
 }
- /* update(oldId: string, announcement:Announcement) : Observable<Announcement> {
+ update(oldId: string, announcement:Announcement) : Observable<Announcement> {
     return this.httpService
       .successful("Announcement successful Update")
       .put(EndPoints.ANNOUNCEMENT+'/'+oldId,announcement);
 
-  }*/
+  }
 getcenter(){
     return this.center;
 }
