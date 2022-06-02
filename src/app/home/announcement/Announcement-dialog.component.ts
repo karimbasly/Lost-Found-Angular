@@ -53,9 +53,9 @@ export class AnnouncementDialogComponent {
 
   update(): void {
     this.announcement.photo = this.url;
-   /* this.mapService.
+    this.mapService.
     update(this.oldId,this.announcement)
-      .subscribe(()=>this.dialog.closeAll());*/
+      .subscribe(()=>this.dialog.closeAll());
     console.log(this.announcement)
 
   }
