@@ -27,11 +27,9 @@ export class AnnouncementDialogComponent {
   announcement:Announcement;
   center=[]
   selectedFile:File=null;
-  placeName: string="";
-  username:string
 
   constructor(@Inject(MAT_DIALOG_DATA)data:Announcement ,private dialog:MatDialog,private mapService:AnnouncementService) {
-    this.title="Announcement ";
+    this.title = data? 'Update Announcement ': 'Create Announcement  ';
     this.oldId = data ? data.id : undefined;
     this.url= data? data.photo:'/assets/images/empty.jpg';
     this.keyType=Object.keys(this.type);
@@ -40,8 +38,8 @@ export class AnnouncementDialogComponent {
       id:undefined, name:undefined, description:undefined, type:undefined, category:undefined,
       photo: undefined, location:undefined,lng:undefined,lat:undefined,userEmail:undefined,
       userName:undefined,userPhoto:undefined
-
     }
+    this.oldId=data? data.id:undefined;
     }
 
   create(): void {
@@ -54,6 +52,11 @@ export class AnnouncementDialogComponent {
   }
 
   update(): void {
+    this.announcement.photo = this.url;
+   /* this.mapService.
+    update(this.oldId,this.announcement)
+      .subscribe(()=>this.dialog.closeAll());*/
+    console.log(this.announcement)
 
   }
 
@@ -61,13 +64,6 @@ export class AnnouncementDialogComponent {
     return this.oldId === undefined;
   }
 
-
-
-  closeAudit() {
-    this.announcement.photo=this.url
-    console.log(this.announcement)
-
-  }
   onFileSelected(event) {
     if(event.target.files){
       this.selectedFile=event.target.files[0]
@@ -83,11 +79,12 @@ export class AnnouncementDialogComponent {
 
   openMap() {
     this.dialog.open(AnnouncementMapDialogComponent).afterClosed()
-      .subscribe(res =>{
+      .subscribe(result =>{
         this.announcement.location =this.mapService.getPlaceName();
         this.center=this.mapService.getcenter()
         this.announcement.lng=this.center[0];
         this.announcement.lat=this.center[1];
+        console.log(result);
       })
 
 

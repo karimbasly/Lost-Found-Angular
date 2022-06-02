@@ -13,13 +13,6 @@ import {MatDialogRef} from "@angular/material/dialog";
 export class AnnouncementMapDialogComponent implements OnInit {
   @ViewChild('asGeoCoder') asGeoCoder: ElementRef;
   mapbox = (mapboxgl as typeof mapboxgl);
-  map: mapboxgl.Map;
-  style = 'mapbox://styles/mapbox/streets-v11';
-  lat =35.83333;
-  lng = 10.63333;
-  zoom = 3;
-  place_name:string
-  center:string[];
 
 constructor(private renderer2:Renderer2, private mapService:AnnouncementService, private dialog: MatDialogRef<AnnouncementMapDialogComponent>) {
   this.mapbox.accessToken=environment.MAPPK
@@ -29,11 +22,9 @@ constructor(private renderer2:Renderer2, private mapService:AnnouncementService,
   ngOnInit(): void {
     this.mapService.buildMap()
       .then(({geocoder, map}) => {
-
         this.renderer2.appendChild(this.asGeoCoder.nativeElement,
           geocoder.onAdd(map)
         );
-
         console.log('*** TODO BIEN *****');
       })
       .
@@ -43,33 +34,7 @@ constructor(private renderer2:Renderer2, private mapService:AnnouncementService,
 
       }
 
-  buildMap(): Promise<any> {
 
-    return new Promise((resolve, reject) => {
-      try {
-        this.map = new mapboxgl.Map({
-          container: 'map',
-          style: this.style,
-          zoom: this.zoom, //15
-          center: [this.lng, this.lat]
-
-
-        });
-        //console.log(this.center[0])
-        const marker = new mapboxgl.Marker()
-          .setLngLat([this.lng, this.lat])
-          .addTo(this.map);
-        resolve({
-          map: this.map,
-          marker
-
-        });
-
-      } catch (e) {
-        reject(e);
-      }
-    });
-  }
 
   close() {
     this.dialog.close(true)

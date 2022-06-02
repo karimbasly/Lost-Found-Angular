@@ -12,6 +12,9 @@
 
 .example-header-image {
   background-size: cover;
+  border-radius: 100%;
+  margin-right: 8px;
+  object-fit: cover;
 }
 .center {
   justify-content: center;

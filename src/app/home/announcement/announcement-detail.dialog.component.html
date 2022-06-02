@@ -1,33 +1,32 @@
-<h1 mat-dialog-content>title</h1>
+<h1 mat-dialog-content>{{title}}</h1>
 <mat-dialog-content>
   <div class="example-card">
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Shiba Inu</mat-card-title>
-      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+      <div mat-card-avatar >
+          <img alt="photo"   class="profile-img-toolbar"  width="30" height="30" [src]="announcement.userPhoto">
+        </div>
+
+      <mat-card-title>{{announcement.name}}</mat-card-title>
+
     </mat-card-header>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <img mat-card-image [src]="announcement.photo" alt="Photo">
     <mat-card-content>
       <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-        bred for hunting.
+        <strong>Description: </strong>{{announcement.description}}
       </p>
     </mat-card-content>
+    <p> <strong>status: </strong>{{announcement.type}}</p>
     <mat-card-actions>
 
-      <a>    <mat-icon matSuffix>place</mat-icon> object Location
+      <a>    <mat-icon matSuffix>place</mat-icon>
+        {{announcement.location}}
       </a>
-
-      <button  mat-button mat-icon-button matSuffix>
-        <mat-icon>visibility</mat-icon>
-      </button>
-      <button  mat-button mat-icon-button matSuffix>
-        <mat-icon color="warn">mode_edit</mat-icon>
-      </button>
-      <button  mat-button mat-icon-button matSuffix>
-        <mat-icon color="warn">close</mat-icon>
-      </button>
+      <div class="wrapper">
+        <div id="map1" class="map-container" ></div>
+      </div>
+      <mat-dialog-actions>
+        <button mat-dialog-close mat-raised-button>Close</button>
+      </mat-dialog-actions>
     </mat-card-actions>
   </div>
 </mat-dialog-content>

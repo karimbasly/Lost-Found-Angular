@@ -7,13 +7,13 @@ export interface Announcement{
   description:string;
   type:Type;
   category:Category;
-  photo:string;
-  location:string;
+  photo?:string;
+  location?:string;
   lat?:number;
   lng?:number;
   userEmail:string;
   userPhoto?:string;
-  userName:string;
+  userName?:string;
 
 
 }
