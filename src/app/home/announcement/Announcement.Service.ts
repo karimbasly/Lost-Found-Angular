@@ -110,5 +110,12 @@ getcenter(){
       .get(EndPoints.ANNOUNCEMENT+'/user/'+userEmail)
 
   }
+
+  delete(id: string) :Observable<Announcement>{
+    return this.httpService
+      .successful()
+      .delete(EndPoints.ANNOUNCEMENT+'/'+id);
+
+  }
 }
 

@@ -1,5 +1,5 @@
 
-  <mat-card-content class="form-container" >
+  <mat-card-content class="form-container" *ngIf="!homepage">
     <mat-label><strong>Filters: </strong></mat-label>
     <mat-form-field>
       <mat-label>Location </mat-label>
@@ -29,11 +29,11 @@
       <mat-icon>close</mat-icon>
     </button>
   </mat-card-content>
-
+  <mat-card-content class="form-container" *ngIf="homepage"></mat-card-content>
 
 
 <mat-card>
-  <mat-card-title>announcement
+  <mat-card-title>{{title}}
   <button   class="right" mat-button mat-icon-button matSuffix (click)="Create()">
     <mat-icon color="warn">add</mat-icon>
   </button>
@@ -64,10 +64,10 @@
         <mat-icon>visibility</mat-icon>
       </button>
 
-      <button *ngIf="admin" mat-button mat-icon-button matSuffix (click)="update(announcements.id)" >
+      <button *ngIf="admin||homepage" mat-button mat-icon-button matSuffix (click)="update(announcements.id)" >
         <mat-icon color="warn">mode_edit</mat-icon>
       </button>
-      <button *ngIf="admin"   mat-button mat-icon-button matSuffix (click)="delete(announcements.id)">
+      <button *ngIf="admin||homepage"   mat-button mat-icon-button matSuffix (click)="delete(announcements.id)">
         <mat-icon color="warn">close</mat-icon>
       </button>
 
