@@ -6,17 +6,33 @@ import {AnnouncementDialogComponent} from "./Announcement-dialog.component";
 import {AnnouncementDetailDialogComponent} from "./announcement-detail.dialog.component";
 import {CancelYesDialogComponent} from "@shared/dialogs/cancel-yes-dialog.component";
 import {AuthService} from "@core/auth.service";
+import {AnnouncementSearch} from "./announcement-search.model";
+import {Category} from "@shared/models/category.model";
+import {Type} from "@shared/models/type.model";
 
 @Component({
-  templateUrl: 'my-announcement.component.html',
+  templateUrl: 'announcement.component.html',
   styleUrls: ['announcement.component.css'],
 })
 export class MyAnnouncementComponent{
   announcement: Announcement[];
+  announcementSearch:AnnouncementSearch;
+  keyCategory=[];
+  category=Category
+  type=Type
+  keyType=[];
   userEmail:string;
+  admin:boolean;
+  homepage=true;
+  title:string;
   constructor(private dialog: MatDialog,private announcementService:AnnouncementService,private authService:AuthService){
+    this.keyType=Object.keys(this.type);
+    this.keyCategory=Object.keys(this.category);
+    this.title="My announcements"
+    this.resetSearch();
   }
   ngOnInit(): void {
+    this.admin=this.authService.isAdmin()
     this.userEmail=this.authService.getEmail();
     this.announcementService.readByUserEmail(this.userEmail)
       .subscribe(value => {this.announcement=value
@@ -28,8 +44,12 @@ export class MyAnnouncementComponent{
   Create() {
     this.dialog.open(AnnouncementDialogComponent);
   }
-
-
+  resetSearch(): void {
+    this.announcementSearch = {};}
+ search() {
+    this.announcementService.search(this.announcementSearch)
+      .subscribe(value => {this.announcement=value});
+  }
 
   read(id:any) {
     this.announcementService.readById(id)
@@ -52,6 +72,8 @@ export class MyAnnouncementComponent{
       })
       .afterClosed().subscribe(result => {
       if (result) {
+        this.announcementService.delete(id).subscribe(value => console.log(value))
+
       }
     })
 

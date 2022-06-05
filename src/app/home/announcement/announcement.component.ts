@@ -22,12 +22,15 @@ export class AnnouncementComponent implements OnInit {
   category=Category
   type=Type
   keyType=[];
+  title:string;
   admin:boolean;
+  homepage=false;
   constructor(private dialog: MatDialog,private announcementService:AnnouncementService, private authservice:AuthService){
     this.keyType=Object.keys(this.type);
     this.keyCategory=Object.keys(this.category);
     this.resetSearch();
     this.admin=this.authservice.isAdmin();
+    this.title="announcements"
 
   }
   ngOnInit(): void {
@@ -58,12 +61,7 @@ export class AnnouncementComponent implements OnInit {
 
   search() {
     this.announcementService.search(this.announcementSearch)
-      .subscribe(value => {this.announcement=value
-      console.log('result')
-        console.log(value)
-        console.log("value to search ")
-        console.log(this.announcementSearch);
-      });
+      .subscribe(value => {this.announcement=value});
 
   }
 
@@ -84,6 +82,7 @@ export class AnnouncementComponent implements OnInit {
       })
       .afterClosed().subscribe(result => {
       if (result) {
+        this.announcementService.delete(id).subscribe(value => console.log(value))
       }
     })
 
