@@ -2,10 +2,9 @@ import {Component, Inject, OnInit} from "@angular/core";
 import {Announcement} from "./announcement.model";
 import * as mapboxgl from 'mapbox-gl' ;
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
-import {SendMessageDialogComponent} from "../chat/send-message.dialog.component";
+//import {SendMessageDialogComponent} from "../chat/send-message.dialog.component";
 
 @Component({
-
   templateUrl: 'announcement-detail.dialog.component.html',
   styleUrls: ['../../shared/dialogs/dialog.component.scss']
 })
