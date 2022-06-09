@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {Announcement} from "./announcement-model";
+import {Announcement} from "./announcement.model";
 import {MatDialog} from "@angular/material/dialog";
 import {AnnouncementService} from "./Announcement.Service";
 import {AnnouncementDialogComponent} from "./Announcement-dialog.component";
@@ -12,7 +12,7 @@ import {Type} from "@shared/models/type.model";
 
 @Component({
   templateUrl: 'announcement.component.html',
-  styleUrls: ['announcement.component.css'],
+  styleUrls: ['announcement.component.scss'],
 })
 export class MyAnnouncementComponent{
   announcement: Announcement[];

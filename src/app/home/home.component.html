@@ -8,7 +8,7 @@
   <div>
     <img alt="photo" class="profile-img-toolbar" *ngIf="isAuthenticated()" width="30" height="30" [src]="photo">
     <button (click)="login()" *ngIf="!isAuthenticated()" mat-button>
-      <mat-icon>person_outline</mat-icon>
+      <mat-icon>login</mat-icon>
       <span>Login</span>
     </button>
 
@@ -20,7 +20,6 @@
     <button [matMenuTriggerFor]="menu" mat-icon-button *ngIf="isAuthenticated()" >
       <mat-icon>menu</mat-icon>
     </button>
-
 
   </div>
 </mat-toolbar>
@@ -41,7 +40,10 @@
     <mat-icon>store</mat-icon>
     <span>My Announcement</span>
   </button>
-
+  <button   mat-menu-item routerLink="/home/messengers">
+    <mat-icon>message</mat-icon>
+    <span>Messengers</span>
+  </button>
 </mat-menu>
 <router-outlet></router-outlet>
 <app-footer></app-footer>

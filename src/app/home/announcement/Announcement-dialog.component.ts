@@ -5,7 +5,7 @@ import {AnnouncementMapDialogComponent} from "./Announcement-map-dialog.componen
 import {AnnouncementService} from "./Announcement.Service";
 import {Category} from "@shared/models/category.model";
 import {Type} from "@shared/models/type.model";
-import {Announcement} from "./announcement-model";
+import {Announcement} from "./announcement.model";
 
 
 
@@ -13,7 +13,7 @@ import {Announcement} from "./announcement-model";
 @Component({
 
   templateUrl: 'Announcement-dialog.component.html',
-  styleUrls: ['../../shared/dialogs/dialog.component.css']
+  styleUrls: ['../../shared/dialogs/dialog.component.scss']
 })
 export class AnnouncementDialogComponent {
   @ViewChild('code', {static: true}) private elementRef: ElementRef;

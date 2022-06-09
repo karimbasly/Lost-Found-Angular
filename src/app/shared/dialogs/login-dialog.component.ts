@@ -8,7 +8,7 @@ import {registerDialogComponent} from "@shared/dialogs/register-dialog.component
 
 @Component({
   templateUrl: 'login-dialog.component.html',
-  styleUrls: ['./dialog.component.css']
+  styleUrls: ['./dialog.component.scss']
 })
 export class  LoginDialogComponent {
   email: string;

@@ -11,7 +11,7 @@ import {CancelYesDialogComponent} from "@shared/dialogs/cancel-yes-dialog.compon
 
 @Component({
   templateUrl: 'user.component.html',
-  styleUrls: ['user.component.css'],
+  styleUrls: ['user.component.scss'],
 })
 export class UserComponent {
   userSearch:UserSearch;

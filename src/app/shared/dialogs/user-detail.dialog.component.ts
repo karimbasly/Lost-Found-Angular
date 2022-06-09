@@ -4,7 +4,7 @@ import {User} from "@shared/models/user.model";
 
 @Component({
   templateUrl: 'user-detail.dialog.component.html',
-  styleUrls: ['./dialog.component.css']
+  styleUrls: ['./dialog.component.scss']
 })
 
 export class ReadDetailDialogComponent {

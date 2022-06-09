@@ -5,7 +5,7 @@ import {environment} from "@env";
 import {HttpService} from "@core/http.service";
 import {Observable} from "rxjs";
 import {EndPoints} from "@shared/end-points";
-import {Announcement} from "./announcement-model";
+import {Announcement} from "./announcement.model";
 import {UserService} from "@shared/services/user.Service";
 import {AuthService} from "@core/auth.service";
 import {AnnouncementSearch} from "./announcement-search.model";
