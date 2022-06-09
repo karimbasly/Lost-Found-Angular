@@ -1,6 +1,24 @@
 <h1 mat-dialog-content>{{title}}</h1>
 <mat-dialog-content>
-  <div class="example-card">
+
+  <mat-form-field class="full-width" >
+    <mat-label>TO</mat-label>
+    <input [(ngModel)]="announcement.userEmail"  matInput [disabled]="true" type="text"/>
+  </mat-form-field>
+
+  <div class="input-area">
+    <mat-form-field appearance="outline">
+      <input
+        [(ngModel)]="chat.message1"
+        matInput
+
+      />
+      <button mat-icon-button matSuffix (click)="sendMessage()" >
+        <mat-icon>send</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <!--<div class="example-card">
     <mat-card-header>
       <div mat-card-avatar >
           <img alt="photo"   class="profile-img-toolbar"  width="30" height="30" [src]="announcement.userPhoto">
@@ -34,4 +52,5 @@
       </mat-dialog-actions>
     </mat-card-actions>
   </div>
+  -->
 </mat-dialog-content>
