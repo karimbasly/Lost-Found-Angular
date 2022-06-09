@@ -3,7 +3,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {AnnouncementDialogComponent} from "./Announcement-dialog.component";
 import {AnnouncementDetailDialogComponent} from "./announcement-detail.dialog.component";
 import {AnnouncementService} from "./Announcement.Service";
-import {Announcement} from "./announcement-model";
+import {Announcement} from "./announcement.model";
 import {Category} from "@shared/models/category.model";
 import {Type} from "@shared/models/type.model";
 import {AnnouncementSearch} from "./announcement-search.model";
@@ -13,7 +13,7 @@ import {AuthService} from "@core/auth.service";
 
 @Component({
   templateUrl: 'announcement.component.html',
-  styleUrls: ['announcement.component.css'],
+  styleUrls: ['announcement.component.scss'],
 })
 export class AnnouncementComponent implements OnInit {
   announcement: Announcement[];

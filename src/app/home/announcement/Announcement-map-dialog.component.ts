@@ -8,7 +8,7 @@ import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   templateUrl: 'Announcement-map-dialog.component.html',
-  styleUrls: ['announcement.component.css'],
+  styleUrls: ['announcement.component.scss'],
 })
 export class AnnouncementMapDialogComponent implements OnInit {
   @ViewChild('asGeoCoder') asGeoCoder: ElementRef;

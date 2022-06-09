@@ -2,10 +2,11 @@ import {Component, Inject} from "@angular/core";
 import {User} from "@shared/models/user.model";
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {UserService} from "@shared/services/user.Service";
+import {AuthService} from "@core/auth.service";
 
 @Component({
   templateUrl: 'register-dialog.component.html',
-  styleUrls: ['./dialog.component.css']
+  styleUrls: ['./dialog.component.scss']
 })
 export class registerDialogComponent{
   user:User
@@ -15,11 +16,12 @@ export class registerDialogComponent{
   oldEmail:string
   url:string;
   selectedFile:File=null;
+  isAdmin:boolean;
 
 
-
-  constructor(@Inject(MAT_DIALOG_DATA) data: User, private userService:UserService, private dialog:MatDialog) {
+  constructor(@Inject(MAT_DIALOG_DATA) data: User, private userService:UserService, private dialog:MatDialog,private authService:AuthService) {
     this.title = data? 'Update ': 'Create';
+    this.isAdmin=this.authService.isAdmin();
     this.url= data? data.photo:'/assets/images/empty.jpg';
     this.user = data ? data : {email: undefined,familyName:undefined,photo:undefined,location:undefined,mobile:undefined,
       userName:undefined,password:undefined,role:undefined,id:undefined,registrationDate:undefined
@@ -37,7 +39,7 @@ export class registerDialogComponent{
     if (this.checkpass(this.user.password, this.password2)) {
       this.user.photo = this.url;
       this.userService.create(this.user)
-        .subscribe(value => {
+        .subscribe(()=> {
           this.dialog.closeAll();
     });
     } else {

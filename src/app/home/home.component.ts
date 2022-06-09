@@ -7,7 +7,7 @@ import {UserService} from "@shared/services/user.Service";
 
 @Component({
   templateUrl: 'home.component.html',
-  styleUrls: ['home.component.css'],
+  styleUrls: ['home.component.scss'],
 })
 export class HomeComponent {
   username :string;

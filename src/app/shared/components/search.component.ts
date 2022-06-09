@@ -4,7 +4,7 @@ import {of} from 'rxjs';
 @Component({
   selector: 'app-search',
   templateUrl: 'search.component.html',
-  styleUrls: ['search.component.css']
+  styleUrls: ['search.component.scss']
 })
 export class SearchComponent {
   @Input() title = 'Search';

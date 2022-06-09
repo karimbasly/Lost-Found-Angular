@@ -1,8 +1,7 @@
 {
   "name": "angulartest",
-  "version": "0.0.0",
+  "version": "0.0.1-SNAPSHOT",
   "mapkey": "pk.eyJ1Ijoia2FyaW1ic2wiLCJhIjoiY2wzaXNqMTBuMDBuYjNkdm14dnRlZWFndSJ9.h2mhgWCGqVyHc4k9mp_T3Q",
-
   "scripts": {
     "heroku-postbuild": "ng build --prod",
     "build-prod": "ng build --prod",
@@ -42,6 +41,7 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "schematics-scss-migrate": "^1.3.14",
     "typescript": "~4.4.3"
   }
 }

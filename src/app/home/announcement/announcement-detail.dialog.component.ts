@@ -1,12 +1,13 @@
 import {Component, Inject, OnInit} from "@angular/core";
-import {Announcement} from "./announcement-model";
+import {Announcement} from "./announcement.model";
 import * as mapboxgl from 'mapbox-gl' ;
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
+import {SendMessageDialogComponent} from "../chat/send-message.dialog.component";
 
 @Component({
 
   templateUrl: 'announcement-detail.dialog.component.html',
-  styleUrls: ['../../shared/dialogs/dialog.component.css']
+  styleUrls: ['../../shared/dialogs/dialog.component.scss']
 })
 export class AnnouncementDetailDialogComponent implements OnInit {
   title: string;
@@ -17,7 +18,7 @@ export class AnnouncementDetailDialogComponent implements OnInit {
   lat :number;
   lng:number;
   zoom = 15;
-  constructor(@Inject(MAT_DIALOG_DATA) data: Announcement){
+  constructor(@Inject(MAT_DIALOG_DATA) data: Announcement,private dialog: MatDialog){
     this.title = "Announcement Details ";
 
     this.announcement =data ? data : {
@@ -62,4 +63,9 @@ export class AnnouncementDetailDialogComponent implements OnInit {
   }
 
 
+  sendMessage() {
+   // this.dialog.open(SendMessageDialogComponent,{data:this.announcement})
+    //console.log(this.announcement)
+
+  }
 }
