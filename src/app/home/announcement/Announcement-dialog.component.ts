@@ -67,7 +67,7 @@ export class AnnouncementDialogComponent {
   onFileSelected(event) {
     if(event.target.files){
       this.selectedFile=event.target.files[0]
-      var reader = new FileReader();
+      const reader = new FileReader();
 
       reader.onload=(e:any)=>{
         this.url= e.target.result;
