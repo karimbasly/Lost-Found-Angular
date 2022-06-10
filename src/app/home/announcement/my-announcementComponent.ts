@@ -25,16 +25,16 @@ export class MyAnnouncementComponent{
   admin:boolean;
   homepage=true;
   title:string;
-  constructor(private dialog: MatDialog,private announcementService:AnnouncementService,private authService:AuthService){
+  constructor(private matDialog: MatDialog,private announcementService1:AnnouncementService,private authService1:AuthService){
     this.keyType=Object.keys(this.type);
     this.keyCategory=Object.keys(this.category);
     this.title="My announcements"
     this.resetSearch();
   }
   ngOnInit(): void {
-    this.admin=this.authService.isAdmin()
-    this.userEmail=this.authService.getEmail();
-    this.announcementService.readByUserEmail(this.userEmail)
+    this.admin=this.authService1.isAdmin()
+    this.userEmail=this.authService1.getEmail();
+    this.announcementService1.readByUserEmail(this.userEmail)
       .subscribe(value => {this.announcement=value
         console.log("ele de5el")
         console.log(this.announcement);
@@ -42,29 +42,29 @@ export class MyAnnouncementComponent{
 
   }
   Create() {
-    this.dialog.open(AnnouncementDialogComponent);
+    this.matDialog.open(AnnouncementDialogComponent);
   }
   resetSearch(): void {
     this.announcementSearch = {};}
  search() {
-    this.announcementService.search(this.announcementSearch)
-      .subscribe(value => {this.announcement=value});
+    this.announcementService1.search(this.announcementSearch)
+      .subscribe(result => {this.announcement=result});
   }
 
   read(id:any) {
-    this.announcementService.readById(id)
+    this.announcementService1.readById(id)
       .subscribe(
-        value => this.dialog.open(AnnouncementDetailDialogComponent,{data:value}))
+        result => this.matDialog.open(AnnouncementDetailDialogComponent,{data:result}))
   }
   update(id: string) {
-    this.announcementService.readById(id)
+    this.announcementService1.readById(id)
       .subscribe(
-        value => this.dialog.open(AnnouncementDialogComponent,{data:value}))
+        result => this.matDialog.open(AnnouncementDialogComponent,{data:result}))
 
   }
 
   delete(id: string) {
-    this.dialog.open(CancelYesDialogComponent,
+    this.matDialog.open(CancelYesDialogComponent,
       {
         data: {
           title: 'Are you Sure To Delete This announcement',
@@ -72,7 +72,7 @@ export class MyAnnouncementComponent{
       })
       .afterClosed().subscribe(result => {
       if (result) {
-        this.announcementService.delete(id).subscribe(value => console.log(value))
+        this.announcementService1.delete(id).subscribe(value1 => console.log(value1))
 
       }
     })
