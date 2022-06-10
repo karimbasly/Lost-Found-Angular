@@ -16,9 +16,6 @@ import {MatInputModule} from "@angular/material/input";
     CoreModule,
     MatFormFieldModule,
     MatInputModule,
-
-    // HomeModule // eager load
-    // ShopModule // eager load
   ],
   declarations: [
     AppComponent,
