@@ -9,6 +9,8 @@ import {AnnouncementDialogComponent} from "./announcement/Announcement-dialog.co
 import {AnnouncementMapDialogComponent} from "./announcement/Announcement-map-dialog.component";
 import {AnnouncementDetailDialogComponent} from "./announcement/announcement-detail.dialog.component";
 import {MyAnnouncementComponent} from "./announcement/my-announcementComponent";
+import {ChatComponent} from "./chat/chat.component";
+import {SendMessageDialogComponent} from "./chat/send-message.dialog.component";
 
 
 
@@ -20,7 +22,9 @@ import {MyAnnouncementComponent} from "./announcement/my-announcementComponent";
     AnnouncementDialogComponent,
     AnnouncementMapDialogComponent,
     AnnouncementDetailDialogComponent,
-    MyAnnouncementComponent
+    MyAnnouncementComponent,
+    ChatComponent,
+    SendMessageDialogComponent
   ],
   entryComponents: [
 

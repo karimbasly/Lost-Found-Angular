@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="chat-list mat-elevation-z5">
+
+    <mat-selection-list [multiple]="false" >
+      <mat-divider></mat-divider>
+      <mat-list-option >
+        <img
+          matListAvatar
+          src=" assets/images/image-placeholder.png"
+        />
+        <p mat-line class="chat-title">
+          <span class="chat-name">chat.chatName </span
+          ><span class="chat-date">
+            chatlastMessageDatedateDisplay
+          </span>
+        </p>
+        <p mat-line>chat.lastMessage </p>
+        <mat-divider></mat-divider>
+      </mat-list-option>
+    </mat-selection-list>
+    <mat-selection-list [multiple]="false" >
+      <mat-divider></mat-divider>
+      <mat-list-option >
+        <img
+          matListAvatar
+          src=" assets/images/image-placeholder.png"
+        />
+        <p mat-line class="chat-title">
+          <span class="chat-name">chat.chatName </span
+          ><span class="chat-date">
+            chatlastMessageDatedateDisplay
+          </span>
+        </p>
+        <p mat-line>chat.lastMessage </p>
+        <mat-divider></mat-divider>
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
+  <div class="messages mat-elevation-z5">
+    <div
+      class="messages-header"
+    >
+      <img src="assets/images/image-placeholder.png"
+      />
+      <h2>electedChat.chatName</h2>
+    </div>
+    <ng-template #noChatSelected>
+      <h2>Messages</h2>
+    </ng-template>
+    <mat-divider></mat-divider>
+    <div class="chat-area">
+      <ng-container >
+        <ng-container >
+          <div
+            class="chat-bubble-container">
+            <div class="chat-bubble">
+              message.text
+              <span class="chat-time">
+                messagesentDate
+              </span>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+      <div #endOfChat></div>
+    </div>
+    <div class="input-area">
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          placeholder="Enter your message..."
+        />
+        <button mat-icon-button matSuffix >
+          <mat-icon>send</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </div>
+</div>

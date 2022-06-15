@@ -7,6 +7,7 @@ import {HomeComponent} from "./home.component";
 import {AnnouncementComponent} from "./announcement/announcement.component";
 import {UserComponent} from "./users/user.component";
 import {MyAnnouncementComponent} from "./announcement/my-announcementComponent";
+import {ChatComponent} from "./chat/chat.component";
 
 
 const routes: Routes = [
@@ -23,15 +24,17 @@ const routes: Routes = [
       {
         path: 'Announcement',
         component: AnnouncementComponent,
-        canActivate: [RoleGuardService],
-        data:{roles: [Role.ADMIN]}
+       // canActivate: [RoleGuardService],
+        //data:{roles: [Role.ADMIN]}
       },
       {
         path: 'MyAnnouncement',
         component: MyAnnouncementComponent,
        // canActivate: [RoleGuardService],
         //data:{roles: [Role.ADMIN]}
-      }
+      }     ,
+      { path:'messengers',component: ChatComponent}
+
 
     ]
   }
