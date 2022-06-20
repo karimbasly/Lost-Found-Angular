@@ -24,17 +24,20 @@ const routes: Routes = [
       {
         path: 'Announcement',
         component: AnnouncementComponent,
-       // canActivate: [RoleGuardService],
-        //data:{roles: [Role.ADMIN]}
+       canActivate: [RoleGuardService],
+        data:{roles: [Role.ADMIN,Role.CUSTOMER]}
       },
       {
         path: 'MyAnnouncement',
         component: MyAnnouncementComponent,
-       // canActivate: [RoleGuardService],
-        //data:{roles: [Role.ADMIN]}
+        canActivate: [RoleGuardService],
+        data:{roles: [Role.CUSTOMER]}
       }     ,
-      { path:'messengers',component: ChatComponent}
-
+      { path:'messengers',
+        component: ChatComponent,
+        canActivate: [RoleGuardService],
+        data:{roles: [Role.CUSTOMER]}
+      },
 
     ]
   }

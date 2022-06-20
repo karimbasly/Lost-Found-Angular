@@ -6,9 +6,11 @@ export interface ChatModel{
   sendEmailTo: string;
   lastMessage?: string;
   //lastMessageDate?: Date ;
-  userPhoto?: string;
-  userName?: string;
-  message1:string;
+  userPhotoFrom?: string;
+  userPhotoTo?: string;
+  userNamesFrom?:string
+  userNamesTo?:string
+  message1:MessageModel[];
 
 
 }

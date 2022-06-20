@@ -1,14 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import {
-  combineLatest,
-  map,
-  Observable,
-  of,
-  startWith,
-  switchMap,
-  tap,
-} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+
+import {ChatService} from "./chat.Service";
+import {MessageModel} from "./message.model";
+import {AuthService} from "@core/auth.service";
+import {ChatModel} from "./chat.model";
 
 
 @Component({
@@ -16,8 +11,47 @@ import {
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss'],
 })
-export class  ChatComponent  {
+export class  ChatComponent implements OnInit{
+  chat:ChatModel[]
+  chat1:ChatModel
+  chatSelected:boolean
+  test:boolean[]
+  sendFrom:boolean=false
+  message1:MessageModel[];
+  userEmail:string
+  sendtext:string;
+  messageSend:MessageModel= new MessageModel();
 
+  constructor(private chatService:ChatService,private authService:AuthService) {
+    this.message1 = [
+      {text: "hello", senderEmail: "karimsend"},
+      {text: "hey", senderEmail: "karimto"},
+    ];
+    this.chat1 = {
+      id: "1", lastMessage: 'hey', sendEmailTo: "karim", sendEmailFrom: "karimsend", message1: this.message1,
+    }
+    this.test = []
+    this.userEmail = this.authService.getEmail();
+  }
+
+
+  ngOnInit(): void {
+    this.chatService.readByUserEmail(this.userEmail,this.userEmail)
+      .subscribe(value => {this.chat=value
+        console.log(this.chat);
+        this.chat.map(value1 => {
+          if(value1.sendEmailFrom == this.userEmail){
+        this.test.push(true)}
+          else {this.test.push(false)}
+        })
+          this.sendFrom=true;
+          console.log(this.sendFrom)
+        console.log("test")
+        console.log(this.test)
+        this.chat1.userPhotoFrom=this.chat[0].userPhotoFrom;
+
+      });
+  }
 
 /*
   user$ = this.usersService.currentUserProfile$;
@@ -103,4 +137,20 @@ export class  ChatComponent  {
   }
 
  */
+
+  selectedChat(id:string) {
+    this.chatSelected = true;
+    console.log(id)
+    console.log(this.chat)
+  }
+
+  sendMessage() {
+    this.messageSend.senderEmail="karimsend";
+    this.messageSend.text=this.sendtext;
+    console.log(this.messageSend);
+    this.chat1.message1.push(this.messageSend)
+    this.messageSend=new MessageModel();
+    this.sendtext=undefined;
+
+  }
 }

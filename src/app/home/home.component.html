@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
 
-  <img alt="miw" src="../../assets/images/icon.png" height="50" width="70"/>
+  <img alt="miw" src="../../assets/images/logo4.png" height="50" width="70"/>
 
   <button mat-button routerLink="/home">
     <span>Lost&Found</span>
@@ -28,7 +28,7 @@
     <mat-icon>settings</mat-icon>
     <span>Profile</span>
   </button>
-  <button   mat-menu-item routerLink="/home/user">
+  <button   mat-menu-item routerLink="/home/user" *ngIf="isAdmin()">
     <mat-icon> contacts</mat-icon>
     <span>User</span>
   </button>
@@ -36,14 +36,28 @@
     <mat-icon>store</mat-icon>
     <span>Announcement</span>
   </button>
-  <button   mat-menu-item routerLink="/home/MyAnnouncement">
+  <button   mat-menu-item routerLink="/home/MyAnnouncement" *ngIf ="!isAdmin()">
     <mat-icon>store</mat-icon>
     <span>My Announcement</span>
   </button>
-  <button   mat-menu-item routerLink="/home/messengers">
+  <button   mat-menu-item routerLink="/home/messengers" *ngIf="!isAdmin()">
     <mat-icon>message</mat-icon>
     <span>Messengers</span>
   </button>
 </mat-menu>
+<div class="container py-5 h-40" *ngIf="!isAuthenticated()">
+  <div class="card bg-light text-black" style="border-radius: 1rem;">
+    <div class="row justify-content">
+      <div class=" col-25 col-md-10">
+        <div class="login-wrap p-4 p-md-5">
+          <h1 class="text-center "> Welcome To Lost And Found Application </h1>
+          <img src="./assets/images/log2.png" alt="Logo" style="width:300px;">
+          <img src="./assets/images/logo4.png" class="rounded float-right" alt="Logo" style="width:200px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <router-outlet></router-outlet>
 <app-footer></app-footer>
