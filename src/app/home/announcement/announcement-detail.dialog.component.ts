@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from "@angular/core";
 import {Announcement} from "./announcement.model";
 import * as mapboxgl from 'mapbox-gl' ;
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
+import {SendMessageDialogComponent} from "../chat/send-message.dialog.component";
 //import {SendMessageDialogComponent} from "../chat/send-message.dialog.component";
 
 @Component({
@@ -63,8 +64,8 @@ export class AnnouncementDetailDialogComponent implements OnInit {
 
 
   sendMessage() {
-   // this.dialog.open(SendMessageDialogComponent,{data:this.announcement})
-    //console.log(this.announcement)
+    this.dialog.open(SendMessageDialogComponent,{data:this.announcement})
+    console.log(this.announcement)
 
   }
 }

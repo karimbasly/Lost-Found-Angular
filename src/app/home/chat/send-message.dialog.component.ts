@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from "@angular/core";
+import {Component, Inject} from "@angular/core";
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {Announcement} from "../announcement/announcement.model";
 import {ChatModel} from "./chat.model";
@@ -8,32 +8,28 @@ import {ChatService} from "./chat.Service";
 
 
 @Component({
-
   templateUrl: 'send-message.dialog.component.html',
-  //styleUrls: ['../../shared/dialogs/dialog.component.scss']
-}) //implements OnInit
+})
 export class SendMessageDialogComponent {
   title:string;
   chat:ChatModel;
   announcement:Announcement;
-  text:string="";
-  ownerId:string="";
   message:MessageModel= new MessageModel();
   constructor(@Inject(MAT_DIALOG_DATA) data:Announcement,private dialog:MatDialog,private authService:AuthService,private chatService:ChatService){
     this.title = "Send a message ";
     this.announcement =data ;
     this.message={text:undefined,senderEmail:undefined}
     this.chat={
-      message1:undefined,
+      message1: [],
       id: undefined,
       sendEmailFrom: undefined,
       sendEmailTo: undefined,
       lastMessage:undefined,
-      //lastMessageDate:undefined,
-      userPhoto:undefined,
-      userName: undefined
+      userNamesTo:undefined,
+      userPhotoFrom:undefined,
+      userPhotoTo:undefined,
+      userNamesFrom: undefined
     }
-    //this.message.senderEmail=this.announcement.userEmail;
 
   }
 
@@ -42,20 +38,20 @@ export class SendMessageDialogComponent {
   sendMessage() {
 
     this.chat.sendEmailFrom=this.authService.getEmail();
-   this.chat.userPhoto=this.announcement.userPhoto;
-    this.chat.userName=this.announcement.userName;
+   this.chat.userPhotoTo=this.announcement.userPhoto;
+    this.chat.userNamesTo=this.announcement.userName;
     this.chat.sendEmailTo=this.announcement.userEmail;
-    //this.ownerId=this.announcement.userName;
-    this.message.senderEmail=this.announcement.userName
-    this.chat.lastMessage=this.chat.message1
-console.log(this.message);
+    this.message.senderEmail=this.authService.getEmail();
+    this.chat.message1.push(this.message);
+    this.chat.lastMessage=this.message.text;
     console.log(this.chat);
-    console.log(this.message.text);
-    this.chatService.create(this.chat)
-     .subscribe(value => {
-        console.log(value)
-        this.dialog.closeAll()
+
+   this.chatService.create(this.chat).subscribe(value => {
+       console.log(value)
+     this.dialog.closeAll()
       });
+
+
 
 
 
