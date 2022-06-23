@@ -1,9 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpService} from "@core/http.service";
-import {MessageModel} from "./message.model";
-import {Observable} from "rxjs";
+import {Observable, Subject, tap} from "rxjs";
 import {EndPoints} from "@shared/end-points";
-import {Chat} from "./chat1.model";
 import {ChatModel} from "./chat.model";
 
 
@@ -11,19 +9,10 @@ import {ChatModel} from "./chat.model";
   providedIn: 'root',
 })
 export class ChatService{
+  private refresh= new Subject<void>()
   constructor(private httpService: HttpService) {
   }
-  message1:MessageModel[]=[
-    {text:"hello",senderEmail:"karimsend"},
-    {text:"hey",senderEmail:"karimto"},
-  ]
-
-
-chat:Chat={
-    id:"1",lastMessage:'hey',userName:"karim",sendFrom:"karimsend",sendTo:"karimto",message:this.message1
-}
   create(chat: any):Observable<any> {
-    //console.log(message);
     return this.httpService
       .post(EndPoints.CHAT,chat);
 
@@ -32,5 +21,24 @@ chat:Chat={
   readByUserEmail(userEmail: string, userEmail2: string):Observable<ChatModel[]> {
     return this.httpService.get(EndPoints.CHAT+'/'+userEmail+'/'+userEmail2)
 
+  }
+
+  readById(id: string){
+   return this.httpService
+     .get(EndPoints.CHAT+ '/' +id);
+  }
+
+  sendMessage(id: string, chat: ChatModel) :Observable<ChatModel> {
+    return this.httpService.put(EndPoints.CHAT+'/'+id,chat)
+      .pipe(
+        tap(()=>{
+          this.refresh.next();
+        })
+      )
+
+  }
+
+  get refreshSubject(){
+    return this.refresh;
   }
 }

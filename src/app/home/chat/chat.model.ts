@@ -5,12 +5,12 @@ export interface ChatModel{
   sendEmailFrom: string;
   sendEmailTo: string;
   lastMessage?: string;
-  //lastMessageDate?: Date ;
+  dateLastMessage?: Date ;
   userPhotoFrom?: string;
   userPhotoTo?: string;
   userNamesFrom?:string
   userNamesTo?:string
-  message1:MessageModel[];
+  message:MessageModel[];
 
 
 }

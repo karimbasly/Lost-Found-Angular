@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
   styleUrls: ['home.component.scss'],
 })
 export class HomeComponent {
-  username :string;
+  userEmail :string;
   photo :string;
 
   constructor(private dialog: MatDialog, private authService: AuthService,private userService:UserService,private router: Router) {
@@ -23,9 +23,9 @@ export class HomeComponent {
     this.dialog.open(LoginDialogComponent)
       .afterClosed()
       .subscribe(() => {
-        this.username = this.authService.getEmail();
+        this.userEmail = this.authService.getEmail();
         if (this.isAuthenticated()) {
-          this.userService.read(this.username).subscribe(value => this.photo = value.photo)
+          this.userService.read(this.userEmail).subscribe(value => this.photo = value.photo)
           this.router.navigate(['home/Announcement']);
         }
       });
@@ -47,7 +47,7 @@ export class HomeComponent {
 
   Profile() {
     this.dialog.closeAll();
-    this.userService.read(this.username).subscribe(value => //console.log(value.id)//
+    this.userService.read(this.userEmail).subscribe(value => //console.log(value.id)//
        this.dialog.open(registerDialogComponent,{data:value})
     )
 
