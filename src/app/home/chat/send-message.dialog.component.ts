@@ -5,6 +5,8 @@ import {ChatModel} from "./chat.model";
 import {MessageModel} from "./message.model";
 import {AuthService} from "@core/auth.service";
 import {ChatService} from "./chat.Service";
+import {Router} from "@angular/router";
+
 
 
 @Component({
@@ -15,12 +17,12 @@ export class SendMessageDialogComponent {
   chat:ChatModel;
   announcement:Announcement;
   message:MessageModel= new MessageModel();
-  constructor(@Inject(MAT_DIALOG_DATA) data:Announcement,private dialog:MatDialog,private authService:AuthService,private chatService:ChatService){
+  constructor(@Inject(MAT_DIALOG_DATA) data:Announcement,private dialog:MatDialog,private authService:AuthService,private chatService:ChatService,private router: Router){
     this.title = "Send a message ";
     this.announcement =data ;
     this.message={text:undefined,senderEmail:undefined}
     this.chat={
-      message1: [],
+      message: [],
       id: undefined,
       sendEmailFrom: undefined,
       sendEmailTo: undefined,
@@ -42,18 +44,14 @@ export class SendMessageDialogComponent {
     this.chat.userNamesTo=this.announcement.userName;
     this.chat.sendEmailTo=this.announcement.userEmail;
     this.message.senderEmail=this.authService.getEmail();
-    this.chat.message1.push(this.message);
+    this.chat.message.push(this.message);
     this.chat.lastMessage=this.message.text;
-    console.log(this.chat);
 
-   this.chatService.create(this.chat).subscribe(value => {
-       console.log(value)
+
+   this.chatService.create(this.chat).subscribe(()=> {
+     this.router.navigate(['home/messengers']);
      this.dialog.closeAll()
       });
-
-
-
-
 
   }
 }
