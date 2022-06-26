@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, Renderer2, ViewChild,} from "@angular/core";
-import {AnnouncementService} from "./Announcement.Service";
+import {AnnouncementService} from "@shared/services/Announcement.Service";
 import * as mapboxgl from 'mapbox-gl' ;
 
 import {environment} from "@env";
@@ -25,7 +25,6 @@ constructor(private renderer2:Renderer2, private mapService:AnnouncementService,
         this.renderer2.appendChild(this.asGeoCoder.nativeElement,
           geocoder.onAdd(map)
         );
-        console.log('*** TODO BIEN *****');
       })
       .
         catch((err) => {

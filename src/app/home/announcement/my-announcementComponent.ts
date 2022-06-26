@@ -1,12 +1,12 @@
 import {Component} from "@angular/core";
-import {Announcement} from "./announcement.model";
+import {Announcement} from "@shared/models/announcement.model";
 import {MatDialog} from "@angular/material/dialog";
-import {AnnouncementService} from "./Announcement.Service";
+import {AnnouncementService} from "@shared/services/Announcement.Service";
 import {AnnouncementDialogComponent} from "./Announcement-dialog.component";
 import {AnnouncementDetailDialogComponent} from "./announcement-detail.dialog.component";
 import {CancelYesDialogComponent} from "@shared/dialogs/cancel-yes-dialog.component";
 import {AuthService} from "@core/auth.service";
-import {AnnouncementSearch} from "./announcement-search.model";
+import {AnnouncementSearch} from "@shared/models/announcement-search.model";
 import {Category} from "@shared/models/category.model";
 import {Type} from "@shared/models/type.model";
 
@@ -36,8 +36,6 @@ export class MyAnnouncementComponent{
     this.userEmail=this.authService1.getEmail();
     this.announcementService1.readByUserEmail(this.userEmail)
       .subscribe(value => {this.announcement=value
-        console.log("ele de5el")
-        console.log(this.announcement);
       });
 
   }

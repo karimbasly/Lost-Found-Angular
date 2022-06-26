@@ -1,11 +1,11 @@
 import {Component} from "@angular/core";
 import {of} from "rxjs";
-import {UserSearch} from "./users-search.model";
+import {UserSearch} from "@shared/models/users-search.model";
 import {MatDialog} from "@angular/material/dialog";
 import {UserService} from "@shared/services/user.Service";
 import {User} from "@shared/models/user.model";
 import {registerDialogComponent} from "@shared/dialogs/register-dialog.component";
-import {ReadDetailDialogComponent} from "@shared/dialogs/user-detail.dialog.component";
+import {ReadDetailDialogComponent} from "./user-detail.dialog.component";
 import {CancelYesDialogComponent} from "@shared/dialogs/cancel-yes-dialog.component";
 
 

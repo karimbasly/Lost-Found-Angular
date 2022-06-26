@@ -1,9 +1,9 @@
 import {Component, ElementRef, OnInit, ViewChild,} from '@angular/core';
 
-import {ChatService} from "./chat.Service";
-import {MessageModel} from "./message.model";
+import {ChatService} from "@shared/services/chat.Service";
+import {MessageModel} from "@shared/models/message.model";
 import {AuthService} from "@core/auth.service";
-import {ChatModel} from "./chat.model";
+import {ChatModel} from "@shared/models/chat.model";
 import {UserService} from "@shared/services/user.Service";
 
 
@@ -26,7 +26,7 @@ export class  ChatComponent implements OnInit {
   userName:string
   messageSend:MessageModel= new MessageModel();
   sendText:string
-  userphoto:string
+  userPhoto:string
 
   constructor(private chatService:ChatService,private authService:AuthService,private user:UserService) {
     this.test = []
@@ -44,17 +44,21 @@ export class  ChatComponent implements OnInit {
 
 
   getChats():void{
-    this.user.read(this.userEmail).subscribe(value =>{ this.userphoto=value.photo; this.userName=value.userName})
+    this.user.read(this.userEmail).subscribe(value =>{ this.userPhoto=value.photo; this.userName=value.userName})
     this.chatService.readByUserEmail(this.userEmail,this.userEmail)
-      .subscribe(value => {this.chat=value
-        console.log(this.chat);
+      .subscribe(value => {
+        if(value!=null){
+        this.chat=value
         this.chat.sort((a, b) => new Date(b.dateLastMessage).getTime()-  new Date(a.dateLastMessage).getTime() )
-        //this.data.sort((a, b) => new Date(b.date1).getTime() - new Date(a.date1).getTime());
-        this.chat.map(value1 => {
+        this.chat.forEach(value1 => {
           if(value1.sendEmailFrom == this.userEmail){
             this.test.push(true)}
           else {this.test.push(false)}
         })
+        }
+        else {
+          this.chat=[];
+        }
       });
   }
   selectedChat(chat:ChatModel) {
@@ -82,7 +86,6 @@ this.chatService.readById(chat.id)
       this.chat1=value;
       this.scrollToBottom()
     });}
-    //this.chat1.message.push(this.messageSend)
     this.messageSend=new MessageModel();
     this.sendText=undefined;
 

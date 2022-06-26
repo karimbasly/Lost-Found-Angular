@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {AnnouncementDialogComponent} from "./Announcement-dialog.component";
 import {AnnouncementDetailDialogComponent} from "./announcement-detail.dialog.component";
-import {AnnouncementService} from "./Announcement.Service";
-import {Announcement} from "./announcement.model";
+import {AnnouncementService} from "@shared/services/Announcement.Service";
+import {Announcement} from "@shared/models/announcement.model";
 import {Category} from "@shared/models/category.model";
 import {Type} from "@shared/models/type.model";
-import {AnnouncementSearch} from "./announcement-search.model";
+import {AnnouncementSearch} from "@shared/models/announcement-search.model";
 import {CancelYesDialogComponent} from "@shared/dialogs/cancel-yes-dialog.component";
 import {AuthService} from "@core/auth.service";
 
@@ -36,8 +36,6 @@ export class AnnouncementComponent implements OnInit {
   ngOnInit(): void {
     this.announcementService.readAll()
       .subscribe(value => {this.announcement=value
-        console.log("ele de5el")
-        console.log(this.announcement);
       });
 
   }

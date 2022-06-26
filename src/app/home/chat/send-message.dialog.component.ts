@@ -1,10 +1,10 @@
 import {Component, Inject} from "@angular/core";
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
-import {Announcement} from "../announcement/announcement.model";
-import {ChatModel} from "./chat.model";
-import {MessageModel} from "./message.model";
+import {Announcement} from "@shared/models/announcement.model";
+import {ChatModel} from "@shared/models/chat.model";
+import {MessageModel} from "@shared/models/message.model";
 import {AuthService} from "@core/auth.service";
-import {ChatService} from "./chat.Service";
+import {ChatService} from "@shared/services/chat.Service";
 import {Router} from "@angular/router";
 
 
@@ -49,7 +49,7 @@ export class SendMessageDialogComponent {
 
 
    this.chatService.create(this.chat).subscribe(()=> {
-     this.router.navigate(['home/messengers']);
+     this.router.navigate(['home/messengers']).then(() => {});
      this.dialog.closeAll()
       });
 
