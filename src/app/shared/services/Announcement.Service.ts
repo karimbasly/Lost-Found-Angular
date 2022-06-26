@@ -5,10 +5,10 @@ import {environment} from "@env";
 import {HttpService} from "@core/http.service";
 import {Observable} from "rxjs";
 import {EndPoints} from "@shared/end-points";
-import {Announcement} from "./announcement.model";
+import {Announcement} from "@shared/models/announcement.model";
 import {UserService} from "@shared/services/user.Service";
 import {AuthService} from "@core/auth.service";
-import {AnnouncementSearch} from "./announcement-search.model";
+import {AnnouncementSearch} from "../models/announcement-search.model";
 
 @Injectable({
   providedIn: 'root',
@@ -81,7 +81,7 @@ export class AnnouncementService {
       .put(EndPoints.ANNOUNCEMENT+'/'+oldId,announcement);
 
   }
-getcenter(){
+getCenter(){
     return this.center;
 }
   getPlaceName(){

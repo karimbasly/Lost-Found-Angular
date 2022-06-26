@@ -4,7 +4,7 @@
       <mat-list-option>
       <img alt="photo"
            matListAvatar width="30" height="30"
-           [src]="userphoto"
+           [src]="userPhoto"
       />
       <p mat-line class="chat-title">
         <span class="chat-name">{{userName}} </span>
@@ -84,55 +84,3 @@
     </div>
   </div>
 </div>
-
-<!--
-
-<div class="messages mat-elevation-z5"  >
-    <div>
-      <h2>Messages</h2>
-    </div>
-    </div>
-<div
-      *ngIf="chatSelected else noChatSelected"
-      class="messages-header"
-    >
-      <img  alt="photo" [src]=""
-      />
-      <h2>chat12.userNamesFrom </h2>
-    </div>
-
-<mat-divider></mat-divider>
-    <div class="chat-area"  >
-      <ng-container >
-        <ng-container >
-          <div
-            class="chat-bubble-container  "
-
-            >
-            <-- *ngFor="let message of chat12.message1"
-            [ngClass]="{ sender: message.senderEmail === userEmail }"  {{message.text}} ->
-<div class="chat-bubble" >
-
-
-              <span class="chat-time">
-                16:15
-              </span>
-</div>
-</div>
-</ng-container>
-</ng-container>
-<div #endOfChat></div>
-</div>
-<div class="input-area" *ngIf="chatSelected">
-  <mat-form-field appearance="outline">
-    <input [(ngModel)]="sendtext"
-           matInput
-           placeholder="Enter your message..."
-    />
-    <button mat-icon-button matSuffix (click)="sendMessage()">
-      <mat-icon>send</mat-icon>
-    </button>
-  </mat-form-field>
-</div>
-</div>
--->

@@ -36,7 +36,7 @@ export class registerDialogComponent{
   }
 
   create(): void {
-    if (this.checkpass(this.user.password, this.password2)) {
+    if (this.checkPassword(this.user.password, this.password2)) {
       this.user.photo = this.url;
       this.userService.create(this.user)
         .subscribe(()=> {
@@ -53,9 +53,7 @@ export class registerDialogComponent{
       .update(this.oldEmail, this.user)
       .subscribe(() => this.dialog.closeAll());
   }
-  //
   onFileSelected(event) {
-    console.log(event);
     if(event.target.files){
       this.selectedFile=event.target.files[0]
       const reader = new FileReader();
@@ -80,7 +78,7 @@ export class registerDialogComponent{
   check(attr: string): boolean {
     return attr === undefined || null || attr === '';
   }
-  checkpass(attr:string,attr2:string): boolean{
+  checkPassword(attr:string, attr2:string): boolean{
     return  attr===attr2;
   }
 }

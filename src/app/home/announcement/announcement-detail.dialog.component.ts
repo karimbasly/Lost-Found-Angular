@@ -1,9 +1,9 @@
 import {Component, Inject, OnInit} from "@angular/core";
-import {Announcement} from "./announcement.model";
+import {Announcement} from "@shared/models/announcement.model";
 import * as mapboxgl from 'mapbox-gl' ;
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {SendMessageDialogComponent} from "../chat/send-message.dialog.component";
-//import {SendMessageDialogComponent} from "../chat/send-message.dialog.component";
+import {AuthService} from "@core/auth.service";
 
 @Component({
   templateUrl: 'announcement-detail.dialog.component.html',
@@ -11,6 +11,8 @@ import {SendMessageDialogComponent} from "../chat/send-message.dialog.component"
 })
 export class AnnouncementDetailDialogComponent implements OnInit {
   title: string;
+  isAdmin:boolean;
+  announcementOwner:boolean;
   announcement:Announcement;
   mapbox = (mapboxgl as typeof mapboxgl);
   map1: mapboxgl.Map;
@@ -18,19 +20,21 @@ export class AnnouncementDetailDialogComponent implements OnInit {
   lat :number;
   lng:number;
   zoom = 15;
-  constructor(@Inject(MAT_DIALOG_DATA) data: Announcement,private dialog: MatDialog){
+  constructor(@Inject(MAT_DIALOG_DATA) data: Announcement,private dialog: MatDialog,private authService:AuthService){
     this.title = "Announcement Details ";
-
+    this.isAdmin=authService.isAdmin();
     this.announcement =data ? data : {
       type:undefined,photo:undefined,location:undefined,id:undefined,userPhoto:undefined,
       userName:undefined,name:undefined,userEmail:undefined,lat:undefined,lng:undefined,
       description:undefined,category:undefined
     }
+
   }
   ngOnInit(): void {
+    this.ownerAnnouncement();
     if(this.announcement.lat!=0.0 && this.announcement.lng!=0.0){
-    this.lat=this.announcement.lat;//35.83333
-    this.lng=this.announcement.lng;//10.63333
+    this.lat=this.announcement.lat;
+    this.lng=this.announcement.lng;
     this.buildMap();
     }
 
@@ -65,7 +69,10 @@ export class AnnouncementDetailDialogComponent implements OnInit {
 
   sendMessage() {
     this.dialog.open(SendMessageDialogComponent,{data:this.announcement})
-    console.log(this.announcement)
 
   }
+  ownerAnnouncement(){
+    this.announcementOwner = this.authService.getEmail() === this.announcement.userEmail;
+  }
+
 }

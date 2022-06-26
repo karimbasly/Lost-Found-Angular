@@ -47,7 +47,7 @@ export class HomeComponent {
 
   Profile() {
     this.dialog.closeAll();
-    this.userService.read(this.userEmail).subscribe(value => //console.log(value.id)//
+    this.userService.read(this.userEmail).subscribe(value =>
        this.dialog.open(registerDialogComponent,{data:value})
     )
 

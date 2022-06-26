@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpService} from "@core/http.service";
 import {Observable, Subject, tap} from "rxjs";
 import {EndPoints} from "@shared/end-points";
-import {ChatModel} from "./chat.model";
+import {ChatModel} from "@shared/models/chat.model";
 
 
 @Injectable({
@@ -19,9 +19,12 @@ export class ChatService{
   }
 
   readByUserEmail(userEmail: string, userEmail2: string):Observable<ChatModel[]> {
-    return this.httpService.get(EndPoints.CHAT+'/'+userEmail+'/'+userEmail2)
+    return this.httpService
+      .get(EndPoints.CHAT + '/' + userEmail + '/' + userEmail2)
 
   }
+
+
 
   readById(id: string){
    return this.httpService

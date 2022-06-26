@@ -9,7 +9,7 @@
       <mat-card-title>{{announcement.name}}</mat-card-title>
 
     </mat-card-header>
-    <img mat-card-image [src]="announcement.photo" alt="Photo">
+    <img mat-card-image [src]="announcement.photo" alt="Photo" width="200" height="200">
     <mat-card-content>
       <p>
         <strong>Description: </strong>{{announcement.description}}
@@ -27,7 +27,7 @@
       <mat-dialog-actions>
         <button mat-dialog-close mat-raised-button>Close</button>
 
-        <button mat-button mat-icon-button matSuffix (click)="sendMessage()">
+        <button *ngIf="!isAdmin && !announcementOwner" mat-button mat-icon-button matSuffix (click)="sendMessage()">
           <mat-icon >message</mat-icon>
 
         </button>

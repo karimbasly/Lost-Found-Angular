@@ -57,8 +57,8 @@
   <ng-container>
   </ng-container>
   <mat-dialog-actions>
-    <button (click)="create()"  *ngIf="isCreate()"  mat-raised-button>Create</button>
-    <button (click)="update()"   *ngIf="!isCreate()" mat-raised-button>Update </button>
+    <button (click)="create()"  *ngIf="isCreate()"  [disabled]=invalid() mat-raised-button>Create</button>
+    <button (click)="update()"   *ngIf="!isCreate()" [disabled]=invalid()  mat-raised-button>Update </button>
     <button cdkFocusInitial mat-dialog-close mat-raised-button>Cancel</button>
   </mat-dialog-actions>
 </mat-dialog-content>
